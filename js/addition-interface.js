@@ -10,3 +10,4 @@ $(document).ready(function() {
     $('#solution').append('<p>Sum = ' + output + '</p>');
   });
 });
+ 

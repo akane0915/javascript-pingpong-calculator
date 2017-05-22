@@ -31,16 +31,15 @@ var Calculator = require('./../js/pingpong.js').calculatorModule;
 
 $(document).ready(function() {
   $('#addition-form').submit(function(event) {
-    debugger;
     event.preventDefault();
     var number1 = parseInt($('#number1').val());
     var number2 = parseInt($('#number2').val());
     var addCalculator = new Calculator();
     var output = addCalculator.add(number1, number2);
-    console.log(number1);
     $('#solution').append('<p>Sum = ' + output + '</p>');
   });
 });
+ 
 
 var Calculator = require('./../js/pingpong.js').calculatorModule;
 
@@ -62,6 +61,23 @@ $(document).ready(function(){
     var email = $('#email').val();
     $('#signup').hide();
     $('#solution').prepend('<p>Thank you, ' + email + ' has been added to our list!</p>');
+  });
+});
+
+$(document).ready(function(){
+ $('#time').text(moment());
+});
+
+var apiKey = "f13f28aae766b371c88539e6329823cd";
+
+$(document).ready(function() {
+  $('#weather-location').click(function() {
+    var city = $('#location').val();
+    $('#location').val("");
+    $('.showWeather').text("The city you have chosen is " + city + ".");
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey, function(response) {
+      $('.showWeather').text("The humidity in " + city + " is " + response.main.humidity + "%");
+    });
   });
 });
 
